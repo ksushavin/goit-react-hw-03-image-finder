@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BsSearch } from 'react-icons/bs';
 import css from 'components/Searchbar/Searchbar.module.css'
-// https://pixabay.com/api/?q=cat&page=1&key=your_key&image_type=photo&orientation=horizontal&per_page=12
-// Your API key: 29185241 - cb51d998a1035b93afc10950d
+
 
 export default class Searchbar extends Component {
     state = {
