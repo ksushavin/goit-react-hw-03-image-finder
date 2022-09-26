@@ -20,24 +20,17 @@ export default class ImageGallery extends Component {
             return { page: prevState.page + 1 }
         });
     }
-
-    resetState = (statusValue) => {
-        this.setState({
-            status: statusValue,
-            images: [],
-            page: 1,
-        });
-    }
-
-   
-      
+       
     fetchImages = (imageQuery, page) => {
         const { images } = this.state;
 
         fetchApi(imageQuery, page)
         .then(data => {
             if (data.hits.length) {
-                this.setState({ images: [...images, ...data.hits], status: 'resolved' });
+                this.setState({
+                    images: [...images, ...data.hits],
+                    status: 'resolved'
+                });
                 // console.log('смена состояния');
                 // console.log(images)
                 return
@@ -60,10 +53,10 @@ export default class ImageGallery extends Component {
 
 
         const { page } = this.state;
-        const { fetchImages, resetState } = this;
+        const { fetchImages } = this;
       
         if (prevImageQuery !== nextImageQuery) {
-            console.log('спрацювавало порівняння пропсів');
+            // console.log('спрацювавало порівняння пропсів');
             
             this.setState({
                 status: 'pending',
@@ -76,7 +69,7 @@ export default class ImageGallery extends Component {
             return 
         }
         if (prevState.page !== page) {
-            console.log('спрацювавало порівняння page')
+            // console.log('спрацювавало порівняння page')
             this.setState({ status: 'pending' });
             fetchImages(prevImageQuery, page);
             return 
@@ -85,8 +78,8 @@ export default class ImageGallery extends Component {
 
     render() {
         const { status, error, images } = this.state;
-        const { loadMore, toggleModal } = this;
-        const { onClick } = this.props;
+        const { loadMore } = this;
+        const { openModal, getBigImg } = this.props;
 
         if (status === 'rejected') {
             return(<div>{error.message}</div>)
@@ -104,8 +97,8 @@ export default class ImageGallery extends Component {
                         url={webformatURL}
                         key={id}
                         largeImage={largeImageURL}
-                        openModal={this.props.openModal}
-                        getBigImg={this.props.getBigImg}
+                        openModal={openModal}
+                        getBigImg={getBigImg}
                     />
                 )
             })
@@ -115,15 +108,10 @@ export default class ImageGallery extends Component {
                     <ul className={css.imageGallery}>
                         {imagesList}
                     </ul>
-                    <button
-                        type='button'
-                        className={css.loadMore}
-                        onClick={loadMore}
-                        >Load more
-                    </button> 
+                  
+                    <Button onClick={loadMore} />
                 </>  
             ) 
         } 
     }
 }
-{/* <Button onClick={loadMore} /> */}

@@ -5,7 +5,7 @@ export default function Button({ onClick }) {
   return (
         <button
             type='submit'
-            className={css.loadMore}
+            className={css.loadMoreBtn}
             onClick={onClick}
             >Load more
         </button>

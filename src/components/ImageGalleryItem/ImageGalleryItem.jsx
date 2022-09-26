@@ -19,18 +19,14 @@ export default class ImageGalleryItem extends Component {
 
     handleClick = () => {
         const { bigImage } = this.state;
-        const { largeImage, openModal, getBigImg } = this.props;
-        console.log(largeImage);
-        // this.setState({
-        //     bigImage: largeImage,
-        // })
+        const { openModal, getBigImg } = this.props;
         
         openModal();
         getBigImg('bigImage', bigImage);
     }
 
     render() {
-        const { url, largeImage } = this.props;
+        const { url } = this.props;
         return (
             <li className={css.galleryItem}>
                 <img
