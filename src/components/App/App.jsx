@@ -33,17 +33,18 @@ export class App extends Component {
     return (
       <>
         {state.showModal && <Modal onClose={toggleModal}>
-          <img
-            src={this.state.bigImage}
-            alt="" />
-         
-          <button type='button' onClick={toggleModal}>Close</button>
+            <button type='button' onClick={toggleModal}>Close</button>
+            <img
+                src={this.state.bigImage}
+                alt=""
+            />
         </Modal>}
+
         <Searchbar onChange={handleChange} />
         <ImageGallery
-          query={state.imageQuery}
-          openModal={toggleModal}
-          getBigImg={handleChange}/>
+            query={state.imageQuery}
+            openModal={toggleModal}
+            getBigImg={handleChange}/>
        
         <ToastContainer
             autoClose={3000}
