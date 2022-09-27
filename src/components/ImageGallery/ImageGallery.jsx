@@ -22,17 +22,15 @@ export default class ImageGallery extends Component {
     }
        
     fetchImages = (imageQuery, page) => {
-        const { images } = this.state;
+        // const { images } = this.state;
 
         fetchApi(imageQuery, page)
         .then(data => {
             if (data.hits.length) {
-                this.setState({
-                    images: [...images, ...data.hits],
+                this.setState(prev=>({
+                    images: [...prev.images, ...data.hits],
                     status: 'resolved'
-                });
-                // console.log('смена состояния');
-                // console.log(images)
+                }));
                 return
             }
             return Promise.reject(
@@ -48,28 +46,20 @@ export default class ImageGallery extends Component {
     componentDidUpdate(prevProps, prevState) {
         const prevImageQuery = prevProps.query;
         const nextImageQuery = this.props.query;
-        // console.log(prevImageQuery);
-        // console.log(nextImageQuery);
-
-
         const { page } = this.state;
         const { fetchImages } = this;
       
         if (prevImageQuery !== nextImageQuery) {
-            // console.log('спрацювавало порівняння пропсів');
-            
             this.setState({
                 status: 'pending',
                 images: [],
                 page: 1,
             });
-            // console.log(this.state.images)
 
             fetchImages(nextImageQuery, page);
             return 
         }
         if (prevState.page !== page) {
-            // console.log('спрацювавало порівняння page')
             this.setState({ status: 'pending' });
             fetchImages(prevImageQuery, page);
             return 
@@ -85,10 +75,10 @@ export default class ImageGallery extends Component {
             return(<div>{error.message}</div>)
         }
         if (status === 'pending') {
-            return<Loader />
+            return <Loader />
         }
         if (status === 'idle') {
-            return(<div>Введіть запит</div>)
+            return(<div className={css.notificatin}>Введіть запит</div>)
         }
         if (status === 'resolved') {
             const imagesList = images.map(({ webformatURL, largeImageURL, id }) => {

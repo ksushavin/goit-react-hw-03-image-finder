@@ -2,10 +2,10 @@
 import { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IoMdCloseCircle } from 'react-icons/io';
 import Searchbar from "../Searchbar/Searchbar";
 import ImageGallery from '../ImageGallery/ImageGallery';
 import Modal from '../Modal/Modal';
-
 
 
 export class App extends Component {
@@ -33,11 +33,15 @@ export class App extends Component {
     return (
       <>
         {state.showModal && <Modal onClose={toggleModal}>
-            <button type='button' onClick={toggleModal}>Close</button>
-            <img
-                src={this.state.bigImage}
-                alt=""
-            />
+          <div onClick={toggleModal}>
+            <IoMdCloseCircle
+              style={{ color: 'white' }}
+               />
+          </div>
+          <img
+              src={this.state.bigImage}
+              alt=""
+          />
         </Modal>}
 
         <Searchbar onChange={handleChange} />

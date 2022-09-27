@@ -43,7 +43,7 @@ export default class Searchbar extends Component {
             <form onSubmit={handleSubmit} className={css.searchForm}>
                 <button type="submit" className={css.button}>
                     <span className={css.buttonLabel}>
-                        <BsSearch className={css.appLogo} />
+                        <BsSearch />
                     </span>
                 </button>
 

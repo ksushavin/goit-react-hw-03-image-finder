@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     background-color: #fff;
     border-radius: 3px;
     overflow: hidden;
@@ -32,8 +32,8 @@
 
 .searchForm button {
     display: inline-block;
-    width: 48px;
-    height: 48px;
+    width: 35px;
+    height: 35px;
     border: 0;
     background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
     background-size: 40%;
@@ -61,7 +61,7 @@
     border: 0;
 }
 
-.SearchForm input {
+.searchForm input {
     display: inline-block;
     width: 100%;
     font: inherit;
@@ -70,9 +70,10 @@
     outline: none;
     padding-left: 4px;
     padding-right: 4px;
+    padding-bottom: 4px;
 }
 
-.SearchForm input::placeholder {
+.searchForm input::placeholder {
     font: inherit;
-    font-size: 18px;
+    font-size: 16px;
 }
