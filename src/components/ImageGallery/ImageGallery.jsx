@@ -21,16 +21,15 @@ export default class ImageGallery extends Component {
         });
     }
        
-    fetchImages = (imageQuery, page) => {
-        // const { images } = this.state;
+    fetchImages = (imageQuery, page, images) => {
 
         fetchApi(imageQuery, page)
         .then(data => {
             if (data.hits.length) {
-                this.setState(prev=>({
-                    images: [...prev.images, ...data.hits],
-                    status: 'resolved'
-                }));
+                this.setState({
+                    images: [...images, ...data.hits],
+                    status: 'resolved',
+                });
                 return
             }
             return Promise.reject(
@@ -56,12 +55,12 @@ export default class ImageGallery extends Component {
                 page: 1,
             });
 
-            fetchImages(nextImageQuery, page);
+            fetchImages(nextImageQuery, 1, []);
             return 
         }
         if (prevState.page !== page) {
             this.setState({ status: 'pending' });
-            fetchImages(prevImageQuery, page);
+            fetchImages(prevImageQuery, page, this.state.images);
             return 
         }
     }
