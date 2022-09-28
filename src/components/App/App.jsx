@@ -33,15 +33,15 @@ export class App extends Component {
     return (
       <>
         {state.showModal && <Modal onClose={toggleModal}>
-          <div onClick={toggleModal}>
-            <IoMdCloseCircle
-              style={{ color: 'white' }}
-               />
-          </div>
-          <img
-              src={this.state.bigImage}
-              alt=""
-          />
+            <div onClick={toggleModal}>
+              <IoMdCloseCircle
+                style={{ color: 'white' }}
+                />
+            </div>
+            <img
+                src={this.state.bigImage}
+                alt=""
+            />
         </Modal>}
 
         <Searchbar onChange={handleChange} />

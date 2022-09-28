@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import css from 'components/ImageGalleryItem/ImageGalleryItem.module.css';
-
-
 
 
 export default class ImageGalleryItem extends Component {
@@ -38,4 +37,11 @@ export default class ImageGalleryItem extends Component {
             </li>
         )
     }
+}
+
+ImageGalleryItem.propTypes = {
+    url: PropTypes.string,
+    id: PropTypes.string, 
+    openModal: PropTypes.func, 
+    getBigImg: PropTypes.func,
 }

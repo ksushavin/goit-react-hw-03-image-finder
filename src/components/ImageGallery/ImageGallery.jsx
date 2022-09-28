@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import Loader from 'components/loader/Loader';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import fetchApi from 'components/services/imagesAPI';
@@ -103,4 +104,10 @@ export default class ImageGallery extends Component {
             ) 
         } 
     }
+}
+
+ImageGallery.propTypes = {
+    query: PropTypes.string, 
+    openModal: PropTypes.func, 
+    getBigImg: PropTypes.func,
 }
